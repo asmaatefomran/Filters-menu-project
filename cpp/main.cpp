@@ -49,3 +49,37 @@ void BlackandWhiteImage() {
     }
 }
 
+void FlipImage() {
+    int flip= SIZE-1;
+    string fpdir;
+    cout<<"please enter horizontal or vertical: ";
+    cin>>fpdir;
+    if(fpdir=="horizontal") {
+        for (int i = SIZE - 1; i >= 0; i--) {
+            for (int j = 0; j < SIZE; j++) {
+                step[flip - i][j] = image[i][j];
+            }
+        }
+
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = step[i][j];
+            }
+        }
+    }
+    else{
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = SIZE-1; j >= 0; j--) {
+                step[i][flip-j] = image[i][j];
+            }
+        }
+
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = step[i][j];
+            }
+        }
+    }
+}
+
+
