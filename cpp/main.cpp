@@ -4,6 +4,7 @@
 using namespace std;
 unsigned char image[SIZE][SIZE];
 unsigned char step[SIZE][SIZE];
+
 void loadImage () {
     char imageFileName[100];
 
