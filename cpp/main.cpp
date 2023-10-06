@@ -245,6 +245,65 @@ void darkandlight_image(){
     }
 
 }
+void shrink_image(){
+    for (int i = 0; i <SIZE; i++) {
+        for (int j = 0; j<SIZE; j++) {
+            image2[i][j]=255;
+
+        }
+    }
+    int x;
+    cout<<"if you want to  shrink to 1/2 enter 1 and for shrinking to 1/3 enter 2 and for shrinking to1/4 enter 3"<<endl;
+    cin>>x;
+    if(x==1)
+    {
+        for (int i = 0; i <SIZE; i++) {
+            for (int j = 0; j<SIZE; j++) {
+                image2[i/2][j/2]=image[i][j];
+
+            }
+        }
+       for (int i = 0; i <SIZE; i++) {
+            for (int j = 0; j<SIZE; j++) {
+                image[i][j]=image2[i][j];
+
+            }
+        }
+    }
+    else if(x==2)
+    {
+        for (int i = 0; i <SIZE; i++) {
+            for (int j = 0; j<SIZE; j++) {
+                image2[i/3][j/3]=image[i][j];
+
+            }
+        }
+        for (int i = 0; i <SIZE; i++) {
+            for (int j = 0; j<SIZE; j++) {
+                image[i][j]=image2[i][j];
+
+            }
+        }
+
+    }
+    else if(x==3)
+    {
+        for (int i = 0; i <SIZE; i++) {
+            for (int j = 0; j<SIZE; j++) {
+                image2[i/4][j/4]=image[i][j];
+
+            }
+        }
+        for (int i = 0; i <SIZE; i++) {
+            for (int j = 0; j<SIZE; j++) {
+                image[i][j]=image2[i][j];
+
+            }
+        }
+
+
+    }
+}
 
 
 //--------------------------------------------------------------------------------------------
