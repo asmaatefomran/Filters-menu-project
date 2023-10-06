@@ -3,6 +3,7 @@
 
 using namespace std;
 unsigned char image[SIZE][SIZE];
+unsigned char image2[SIZE][SIZE];
 unsigned char step[SIZE][SIZE];
 
 void loadImage() {
@@ -15,6 +16,17 @@ void loadImage() {
     // Add to it .bmp extension and load image
     strcat(imageFileName, ".bmp");
     readGSBMP(imageFileName, image);
+}
+void loadImage2 () {
+    char imageFileName[100];
+
+    // Get gray scale image file name
+    cout << "Enter the source image file name that you want to be merged: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat (imageFileName, ".bmp");
+    readGSBMP(imageFileName, image2);
 }
 
 void saveImage() {
@@ -199,6 +211,41 @@ void ZOOM_CHOOSEN_QUARTER() {
         }
     }
 }
+void merge_image(){
+    loadImage2();
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++){
+            image[i][j]=(image[i][j]+image2[i][j])/2;
+
+        }
+
+    }
+}
+void darkandlight_image(){
+    int x;
+    cout<<"enter 1 if you want image to be darker or 2 to make image lighter "<<endl;
+    cin>>x;
+    for (int i = 0; i < SIZE; i++){
+        for (int j = 0; j< SIZE; j++){
+            if(x==1){
+
+                    image[i][j]-=image[i][j]/2;
+
+
+            }
+            else if(x==2)
+            {
+                    image[i][j]+=(256-image[i][j])/2;
+
+
+            }
+
+        }
+
+    }
+
+}
+
 
 //--------------------------------------------------------------------------------------------
 //the user should be able to choose the filter from a list of filters
