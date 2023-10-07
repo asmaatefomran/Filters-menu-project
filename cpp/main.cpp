@@ -304,6 +304,15 @@ void shrink_image(){
 
     }
 }
+void blur_image(){
+    for (int i = 1; i <SIZE; i++) {
+        for (int j = 1; j<SIZE; j++) {
+            image[i][j]=(image[i][j+1]+image[i][j-1]+image[i-1][j]+image[i+1][j])/4;
+
+        }
+    }
+
+}
 
 
 //--------------------------------------------------------------------------------------------
