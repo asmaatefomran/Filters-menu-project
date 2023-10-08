@@ -172,7 +172,29 @@ void Invert_Image() {
         }
     }
 }
+//--------------------------------------------------------------------------------------------
+void DetectImageEdges() {
+    unsigned char copy[SIZE][SIZE];
+    BlackandWhiteImage();
+    bool black=false;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if ((image[i][j] != image[i][j - 1])||(image[i][j] != image[i][j + 1])||(image[i][j] != image[i - 1][j])||(image[i][j] != image[i + 1][j]))
+                black = true;
+            if(black)
+                copy[i][j]=0;
+            else
+                copy[i][j]=255;
 
+            black=false;
+        }
+    }
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            image[i][j]=copy[i][j];
+        }
+    }
+}
 //--------------------------------------------------------------------------------------------
 //function to divide the photo into 4 quarters and chose one to zoom in to the original size
 void ZOOM_CHOOSEN_QUARTER() {
