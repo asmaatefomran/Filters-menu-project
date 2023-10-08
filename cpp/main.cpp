@@ -335,6 +335,113 @@ void blur_image(){
     }
 
 }
+//--------------------------------------------------------------------------------------------
+void Shuffle_Image(){
+    unsigned char temp[SIZE][SIZE];
+    unsigned char aa[SIZE/2][SIZE/2];
+    unsigned char bb[SIZE/2][SIZE/2];
+    unsigned char cc[SIZE/2][SIZE/2];
+    unsigned char dd[SIZE/2][SIZE/2];
+    for (int i = 0 ; i < SIZE/2;i++){
+        for (int j = 0 ; j < SIZE/2;j++){
+            aa[i][j]=image[i][j];
+            bb[i][j]=image[i][j+SIZE/2];
+            cc[i][j]= image[i+SIZE/2][j];
+            dd[i][j]=image[i+SIZE/2][j+SIZE/2];
+        }
+    }
+    unordered_map<int,string>mp;
+    cout <<"Please enter the order: ";int n=4;
+    while(n--){
+        int ord; cin>>ord;
+        if (ord==1){
+            mp.insert({1,"aa"});
+        }
+        else if (ord==2){
+            mp.insert({2,"bb"});
+        }
+        else if (ord==3){
+            mp.insert({3,"cc"});
+        }
+        else if (ord==4){
+            mp.insert({4,"dd"});
+        }
+    }
+    int count = 1 ;
+    for (auto i :mp){
+        if (count ==1){
+            if (i.first==1){
+                for (int i = 0 ; i < SIZE/2;i++){
+                    for (int j = 0 ; j < SIZE/2;j++){
+                        image [i][j]=dd[i][j];}}}
+            if (i.first==2){
+                for (int i = 0 ; i < SIZE/2;i++){
+                    for (int j = 0 ; j < SIZE/2;j++){
+                        image [i][j]=cc[i][j];}}}
+            if (i.first==3){
+                for (int i = 0 ; i < SIZE/2;i++){
+                    for (int j = 0 ; j < SIZE/2;j++){
+                        image [i][j]=bb[i][j];}}}
+            if (i.first==4){
+                for (int i = 0 ; i < SIZE/2;i++){
+                    for (int j = 0 ; j < SIZE/2;j++){
+                        image [i][j]=aa[i][j];}}}
+        }
+        else if (count ==2) {
+            if (i.first == 1) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i][j+SIZE/2] = dd[i][j];}}}
+            if (i.first == 2) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i][j+SIZE/2] = cc[i][j];}}}
+            if (i.first == 3) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i][j+SIZE/2] = bb[i][j];}}}
+            if (i.first == 4) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i][j+SIZE/2] = aa[i][j];}}}
+        }
+        else if (count ==3) {
+            if (i.first == 1) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i+SIZE/2][j] = dd[i][j];}}}
+            if (i.first == 2) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i+SIZE/2][j] = cc[i][j];}}}
+            if (i.first == 3) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i+SIZE/2][j] = bb[i][j];}}}
+            if (i.first == 4) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i+SIZE/2][j] = aa[i][j];}}}}
+        else if (count ==4) {
+            if (i.first == 1) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i+SIZE/2][j+SIZE/2] = dd[i][j];}}}
+            if (i.first == 2) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i+SIZE/2][j+SIZE/2] = cc[i][j];}}}
+            if (i.first == 3) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i+SIZE/2][j+SIZE/2] = bb[i][j];}}}
+            if (i.first == 4) {
+                for (int i = 0; i < SIZE / 2; i++) {
+                    for (int j = 0; j < SIZE / 2; j++) {
+                        image[i+SIZE/2][j+SIZE/2] = aa[i][j];}}}}
+        count++;
+    }
+}
 
 
 //--------------------------------------------------------------------------------------------
