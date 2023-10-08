@@ -32,7 +32,6 @@ void loadImage2 () {
 
 void saveImage() {
     char imageFileName[100];
-
     // Get gray scale image target file name
     cout << "Enter the target image file name: ";
     cin >> imageFileName;
@@ -42,7 +41,7 @@ void saveImage() {
     writeGSBMP(imageFileName, image);
 }
 
-void BlackandWhiteImage() {
+void Black_White_Image() {
 
     int average, sum = 0, total = 256 * 256;
     for (int i = 0; i < SIZE; i++) {
@@ -61,8 +60,30 @@ void BlackandWhiteImage() {
         }
     }
 }
+//-------------------------------------------------------------------------------------------
+//function to invert each pixel of the chosen photo
+void Invert_Image() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (image[i][j] == 0)image[i][j] = 225;
+            else if (image[i][j] == 225)image[i][j] = 0;
+            else image[i][j] = 255 - image[i][j];
+        }
+    }
+}
+//-----------------------------------------------------------------------------------------
+void Merge_Image(){
+    loadImage2();
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++){
+            image[i][j]=(image[i][j]+image2[i][j])/2;
 
-void FlipImage() {
+        }
+
+    }
+}
+//----------------------------------------------------------------------------------------
+void Flip_Image() {
     int flip = SIZE - 1;
     string fpdir;
     cout << "please enter horizontal or vertical: ";
@@ -93,7 +114,7 @@ void FlipImage() {
         }
     }
 }
-
+//-----------------------------------------------------------------------------------------
 //function to rotate the chosen photo
 void Rotate_Image() {
     unsigned char temp[SIZE][SIZE];
@@ -162,21 +183,29 @@ void Rotate_Image() {
         }
     }
 }
-//-------------------------------------------------------------------------------------------
-//function to invert each pixel of the chosen photo
-void Invert_Image() {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            if (image[i][j] == 0)image[i][j] = 225;
-            else if (image[i][j] == 225)image[i][j] = 0;
-            else image[i][j] = 255 - image[i][j];
+//--------------------------------------------------------------------------------------------
+void Darken_and_Lighten_Image(){
+    int x;
+    cout<<"enter 1 if you want image to be darker or 2 to make image lighter "<<endl;
+    cin>>x;
+    for (int i = 0; i < SIZE; i++){
+        for (int j = 0; j< SIZE; j++){
+            if(x==1){
+
+                image[i][j]-=image[i][j]/2;
+
+            }
+            else if(x==2)
+            {
+                image[i][j]+=(256-image[i][j])/2;
+            }
         }
     }
 }
-//--------------------------------------------------------------------------------------------
-void DetectImageEdges() {
+//--------------------------------------------------------------------------------------
+void Detect_Image_Edges() {
     unsigned char copy[SIZE][SIZE];
-    BlackandWhiteImage();
+    Black_White_Image();
     bool black=false;
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
@@ -198,7 +227,7 @@ void DetectImageEdges() {
 }
 //--------------------------------------------------------------------------------------------
 //function to divide the photo into 4 quarters and chose one to zoom in to the original size
-void ZOOM_CHOOSEN_QUARTER() {
+void Enlarge_Image() {
     int quarter;
     unsigned char temp[SIZE / 2][SIZE / 2];
     cout << "please enter the chosen quarter: ";
@@ -234,41 +263,8 @@ void ZOOM_CHOOSEN_QUARTER() {
         }
     }
 }
-void merge_image(){
-    loadImage2();
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j< SIZE; j++){
-            image[i][j]=(image[i][j]+image2[i][j])/2;
-
-        }
-
-    }
-}
-void darkandlight_image(){
-    int x;
-    cout<<"enter 1 if you want image to be darker or 2 to make image lighter "<<endl;
-    cin>>x;
-    for (int i = 0; i < SIZE; i++){
-        for (int j = 0; j< SIZE; j++){
-            if(x==1){
-
-                    image[i][j]-=image[i][j]/2;
-
-
-            }
-            else if(x==2)
-            {
-                    image[i][j]+=(256-image[i][j])/2;
-
-
-            }
-
-        }
-
-    }
-
-}
-void shrink_image(){
+//---------------------------------------------------------------------------------------
+void Shrink_Image(){
     for (int i = 0; i <SIZE; i++) {
         for (int j = 0; j<SIZE; j++) {
             image2[i][j]=255;
@@ -286,7 +282,7 @@ void shrink_image(){
 
             }
         }
-       for (int i = 0; i <SIZE; i++) {
+        for (int i = 0; i <SIZE; i++) {
             for (int j = 0; j<SIZE; j++) {
                 image[i][j]=image2[i][j];
 
@@ -328,7 +324,7 @@ void shrink_image(){
     }
 }
 //------------------------------------------------------------------------------------------------------
-void MirrorImage() {
+void Mirror_Image() {
     cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side? ";
     char dir;
     cin >> dir;
@@ -360,16 +356,6 @@ void MirrorImage() {
             }
         }
     }
-}
-//-------------------------------------------------------------------------------------------------------------
-void blur_image(){
-    for (int i = 1; i <SIZE; i++) {
-        for (int j = 1; j<SIZE; j++) {
-            image[i][j]=(image[i][j+1]+image[i][j-1]+image[i-1][j]+image[i+1][j])/4;
-
-        }
-    }
-
 }
 //--------------------------------------------------------------------------------------------
 void Shuffle_Image(){
@@ -478,7 +464,18 @@ void Shuffle_Image(){
         count++;
     }
 }
-void Skew_horizontal(){
+//-------------------------------------------------------------------------------------------------------------
+void Blur_Image(){
+    for (int i = 1; i <SIZE; i++) {
+        for (int j = 1; j<SIZE; j++) {
+            image[i][j]=(image[i][j+1]+image[i][j-1]+image[i-1][j]+image[i+1][j])/4;
+
+        }
+    }
+
+}
+//------------------------------------------------------------------------------------------------------------
+void Skew_Horizontal(){
     // Define skew factor (adjust as needed)
     float skewFactorX = 0.2; // Adjust for the desired skew effect
 
@@ -499,48 +496,43 @@ void Skew_horizontal(){
 //the user should be able to choose the filter from a list of filters
 int main() {
     loadImage();
-    map<char , void*>mp;
-    mp['1']= (void*)&BlackandWhiteImage;
-    mp['2']= (void*)&Invert_Image;
-    mp['3']= (void*)&merge_image;
-    mp['4']= (void*)&FlipImage;
-    mp['5']= (void*)&Rotate_Image;
-    mp['6']= (void*)&darkandlight_image;
-    mp['7']= (void*)&DetectImageEdges;
-    mp['8']= (void*)&ZOOM_CHOOSEN_QUARTER;
-    mp['9']= (void*)&shrink_image;
-    mp['a']= (void*)&MirrorImage;
-    mp['b']= (void*)&Shuffle_Image;
-    mp['c']= (void*)&blur_image;
-    mp['d']= (void*)&Crop_Image;
-    mp['e']= (void*)&Skew_vertical;
-    mp['f']= (void*)&Skew_horizontal;
-    mp['s']= (void*)&saveImage;
     while(true){
         cout << "Please choose a filter from the list below: " << endl;
         cout <<"1- Black & White Filter\n"
-               <<"2- Invert Filter\n"
-               <<"3- Merge Filter \n"
-               <<"4- Flip Image\n"
-               <<"5- Darken and Lighten Image \n"
-               <<"6- Rotate Image\n"
-               <<"7- Detect Image Edges \n"
-               <<"8- Enlarge Image\n"
-               <<"9- Shrink Image\n"
-               <<"a- Mirror 1/2 Image\n"
-               <<"b- Shuffle Image\n"
-               <<"c- Blur Image\n"
-               <<"d- Crop Image\n"
-               <<"e- Skew Image Right \n"
-               <<"f- Skew Image Up\n"
-               <<"s- Save the image to a file\n"
-               <<"0- Exit";
+             <<"2- Invert Filter\n"
+             <<"3- Merge Filter \n"
+             <<"4- Flip Image\n"
+             <<"5- Rotate Image \n"
+             <<"6- Darken and Lighten Image\n"
+             <<"7- Detect Image Edges \n"
+             <<"8- Enlarge Image\n"
+             <<"9- Shrink Image\n"
+             <<"a- Mirror 1/2 Image\n"
+             <<"b- Shuffle Image\n"
+             <<"c- Blur Image\n"
+             <<"d- Crop Image\n"
+             <<"e- Skew Image Right \n"
+             <<"f- Skew Image Up\n"
+             <<"s- Save the image to a file\n"
+             <<"0- Exit";
         char choice;cin>>choice;
         if (choice=='0')break;
-        else{
-            mp[choice];
-        }
+        else if (choice=='1')Black_White_Image();
+        else if (choice=='2')Invert_Image();
+        else if (choice=='3')Merge_Image();
+        else if (choice=='4')Flip_Image();
+        else if (choice=='5')Rotate_Image();
+        else if (choice=='6')Darken_and_Lighten_Image();
+        else if (choice=='7')Detect_Image_Edges();
+        else if (choice=='8')Enlarge_Image();
+        else if (choice=='9')Shrink_Image();
+        else if (choice=='a')Mirror_Image();
+        else if (choice=='b')Shuffle_Image();
+        else if (choice=='c')Blur_Image();
+        else if (choice=='d');
+        else if (choice=='e');
+        else if (choice=='f')Skew_Horizontal();
+        else if (choice=='s')saveImage();
     }
-
     return 0;
 }
