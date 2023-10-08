@@ -499,7 +499,23 @@ void Skew_horizontal(){
 //the user should be able to choose the filter from a list of filters
 int main() {
     loadImage();
-    FunctionPtr functions[] = {BlackandWhiteImage,  Invert_Image,merge_image,FlipImage,darkandlight_image, Rotate_Image, DetectImageEdges, ZOOM_CHOOSEN_QUARTER,shrink_image,blur_image,Shuffle_Image};
+    map<char , void*>mp;
+    mp['1']= (void*)&BlackandWhiteImage;
+    mp['2']= (void*)&Invert_Image;
+    mp['3']= (void*)&merge_image;
+    mp['4']= (void*)&FlipImage;
+    mp['5']= (void*)&Rotate_Image;
+    mp['6']= (void*)&darkandlight_image;
+    mp['7']= (void*)&DetectImageEdges;
+    mp['8']= (void*)&ZOOM_CHOOSEN_QUARTER;
+    mp['9']= (void*)&shrink_image;
+    mp['a']= (void*)&MirrorImage;
+    mp['b']= (void*)&Shuffle_Image;
+    mp['c']= (void*)&blur_image;
+    mp['d']= (void*)&Crop_Image;
+    mp['e']= (void*)&Skew_vertical;
+    mp['f']= (void*)&Skew_horizontal;
+    mp['s']= (void*)&saveImage;
     while(true){
         cout << "Please choose a filter from the list below: " << endl;
         cout <<"1- Black & White Filter\n"
@@ -521,22 +537,9 @@ int main() {
                <<"0- Exit";
         char choice;cin>>choice;
         if (choice=='0')break;
-        else if (choice=='1')functions[0]();
-        else if (choice=='2')functions[1]();
-        else if (choice=='3')functions[2]();
-        else if (choice=='4')functions[3]();
-        else if (choice=='5')functions[4]();
-        else if (choice=='6')functions[5]();
-        else if (choice=='7')functions[6]();
-        else if (choice=='8')functions[7]();
-        else if (choice=='9')functions[8]();
-        else if (choice=='a')functions[9]();
-        else if (choice=='b')functions[10]();
-        else if (choice=='c')functions[11]();
-        else if (choice=='d')functions[12]();
-        else if (choice=='e')functions[13]();
-        else if (choice=='f')functions[14]();
-        else if (choice=='s')saveImage();
+        else{
+            mp[choice];
+        }
     }
 
     return 0;
