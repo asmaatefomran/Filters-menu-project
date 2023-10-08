@@ -326,6 +326,41 @@ void shrink_image(){
 
     }
 }
+//------------------------------------------------------------------------------------------------------
+void MirrorImage() {
+    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side? ";
+    char dir;
+    cin >> dir;
+    if(dir == 'l') {
+        for(int i = 0; i < SIZE; i++){
+            for(int j = 0; j < SIZE/2 ; j++){
+                image[i][SIZE-1-j]=image[i][j];
+            }
+        }
+    }
+    else if(dir == 'r') {
+        for(int i = 0; i < SIZE; i++){
+            for(int j = 0; j < SIZE/2; j++){
+                image[i][j]=image[i][SIZE-1-j];
+            }
+        }
+    }
+    else if(dir == 'u'){
+        for(int i = 0; i < SIZE/2; i++){
+            for(int j = 0; j < SIZE; j++){
+                image[SIZE-1-i][j]=image[i][j];
+            }
+        }
+    }
+    else {
+        for(int i = 0; i < SIZE/2; i++){
+            for(int j = 0; j < SIZE; j++){
+                image[i][j]=image[SIZE-1-i][j];
+            }
+        }
+    }
+}
+//-------------------------------------------------------------------------------------------------------------
 void blur_image(){
     for (int i = 1; i <SIZE; i++) {
         for (int j = 1; j<SIZE; j++) {
