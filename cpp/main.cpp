@@ -87,10 +87,10 @@ void Merge_Image(){
 //function to flip the photo horizontally or vertically
 void Flip_Image() {
     int flip = SIZE - 1;
-    string fpdir;
-    cout << "please enter horizontal or vertical: ";
+    char fpdir;
+    cout << "please enter (h)orizontal or (v)ertical: ";
     cin >> fpdir;
-    if (fpdir == "horizontal") {
+    if (fpdir == 'h') {
         for (int i = SIZE - 1; i >= 0; i--) {
             for (int j = 0; j < SIZE; j++) {
                 step[flip - i][j] = image[i][j];
