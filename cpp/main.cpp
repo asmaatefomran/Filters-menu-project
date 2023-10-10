@@ -1,13 +1,18 @@
 // FCAI – OOP Programming – 2023 - Assignment 1
-// Program Name:				xxxxxx.cpp
-// Last Modification Date:	xx/xx/xxxx
-// Author1 and ID and Group:	xxxxx xxxxx
-// Author2 and ID and Group:	xxxxx xxxxx
-// Author3 and ID and Group:	xxxxx xxxxx
-// Teaching Assistant:		xxxxx xxxxx
-// Purpose:..........
-
-
+// Program Name:Image_Filters.cpp
+// Last Modification Date:	10/10/2023
+/*Team Members:
+ * 1- Hadeer Abdelhady
+ *    ID:20221229
+ *    Email:hadearabdelhady10@gmail.com
+ * 2- Aya Ehab Rmamdan :
+ *    ID:20221209
+ *    Email:ayaehap567@gmail.com
+ * 3- Asmaa Atef
+ *    ID:20221020
+ *    Email:asmaatef6789@gmail.com
+ *
+ * */
 #include<bits/stdc++.h>
 #include "bmplib.cpp"
 #include <functional>
