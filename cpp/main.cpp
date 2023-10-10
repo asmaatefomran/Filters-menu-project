@@ -40,7 +40,8 @@ void saveImage() {
     strcat(imageFileName, ".bmp");
     writeGSBMP(imageFileName, image);
 }
-
+//------------------------------------------------------------------------------------
+//function to convert each pixel to black or white based on the average
 void Black_White_Image() {
 
     int average, sum = 0, total = 256 * 256;
@@ -83,6 +84,7 @@ void Merge_Image(){
     }
 }
 //----------------------------------------------------------------------------------------
+//function to flip the photo horizontally or vertically
 void Flip_Image() {
     int flip = SIZE - 1;
     string fpdir;
@@ -203,6 +205,7 @@ void Darken_and_Lighten_Image(){
     }
 }
 //--------------------------------------------------------------------------------------
+//function to detect the edges as pencil outline
 void Detect_Image_Edges() {
     unsigned char copy[SIZE][SIZE];
     Black_White_Image();
