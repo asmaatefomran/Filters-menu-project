@@ -1,3 +1,13 @@
+// FCAI – OOP Programming – 2023 - Assignment 1
+// Program Name:				xxxxxx.cpp
+// Last Modification Date:	xx/xx/xxxx
+// Author1 and ID and Group:	xxxxx xxxxx
+// Author2 and ID and Group:	xxxxx xxxxx
+// Author3 and ID and Group:	xxxxx xxxxx
+// Teaching Assistant:		xxxxx xxxxx
+// Purpose:..........
+
+
 #include<bits/stdc++.h>
 #include "bmplib.cpp"
 #include <functional>
@@ -120,71 +130,47 @@ void Flip_Image() {
 //function to rotate the chosen photo
 void Rotate_Image() {
     unsigned char temp[SIZE][SIZE];
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            temp[i][j] = image[i][j];
-        }
-    }
     int degree;
     cout << "Please enter the rotation degree: " << endl;
     cin >> degree;
     if (degree == 90) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
+                temp[j][SIZE-1-i] = image[i][j];
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = temp[i][j];
             }
         }
     } else if (degree == 180) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
+                temp[SIZE-1-i][SIZE-1-j] = image[i][j] ;
             }
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                temp[i][j] = image[i][j];
+                image[i][j] = temp[i][j];
             }
         }
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
-            }
-        }
+
     } else if (degree == 270) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
+                temp[SIZE - 1 - j][i] = image[i][j] ;
             }
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                temp[i][j] = image[i][j];
+                image[i][j] = temp[i][j];
             }
         }
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
-            }
-        }
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                temp[i][j] = image[i][j];
-            }
-        }
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
-            }
-        }
-    }
 
-
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            image[i][j] = temp[SIZE - 1 - j][i];
-        }
     }
 }
+//--------------------------------------------------------------------------------------------------
 //function allows the user to make the image darker or lighter by 50%
 void Darken_and_Lighten_Image(){
     int x;
@@ -228,6 +214,7 @@ void Detect_Image_Edges() {
         }
     }
 }
+
 //--------------------------------------------------------------------------------------------
 //function to divide the photo into 4 quarters and chose one to zoom in to the original size
 void Enlarge_Image() {
