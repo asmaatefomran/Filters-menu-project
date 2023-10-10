@@ -72,7 +72,7 @@ void Invert_Image() {
         }
     }
 }
-//-----------------------------------------------------------------------------------------
+////a function will create a new image, with every pixel equal the average gray level of the corresponding pixels in the images to merge.
 void Merge_Image(){
     loadImage2();
     for (int i = 0; i < SIZE; i++) {
@@ -185,7 +185,7 @@ void Rotate_Image() {
         }
     }
 }
-//--------------------------------------------------------------------------------------------
+//function allows the user to make the image darker or lighter by 50%
 void Darken_and_Lighten_Image(){
     int x;
     cout<<"enter 1 if you want image to be darker or 2 to make image lighter "<<endl;
@@ -266,7 +266,7 @@ void Enlarge_Image() {
         }
     }
 }
-//---------------------------------------------------------------------------------------
+//this function allows the user to shrink the image dimensions to 1/2, 1/3 or 1/4 the original dimensions.
 void Shrink_Image(){
     for (int i = 0; i <SIZE; i++) {
         for (int j = 0; j<SIZE; j++) {
@@ -467,7 +467,7 @@ void Shuffle_Image(){
         count++;
     }
 }
-//-------------------------------------------------------------------------------------------------------------
+//this filter produces a bury version of the image.
 void Blur_Image(){
     for (int i = 1; i <SIZE-1; i++) {
         for (int j = 1; j<SIZE-1; j++) {
