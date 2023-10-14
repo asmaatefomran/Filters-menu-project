@@ -1,3 +1,18 @@
+// FCAI – OOP Programming – 2023 - Assignment 1
+// Program Name:Image_Filters.cpp
+// Last Modification Date:	10/10/2023
+/*Team Members:
+ * 1- Hadeer Abdelhady
+ *    ID:20221229
+ *    Email:hadearabdelhady10@gmail.com
+ * 2- Aya Ehab Rmamdan :
+ *    ID:20221209
+ *    Email:ayaehap567@gmail.com
+ * 3- Asmaa Atef
+ *    ID:20221020
+ *    Email:asmaatef6789@gmail.com
+ *
+ * */
 #include<bits/stdc++.h>
 #include "bmplib.cpp"
 #include <functional>
@@ -40,7 +55,8 @@ void saveImage() {
     strcat(imageFileName, ".bmp");
     writeGSBMP(imageFileName, image);
 }
-
+//------------------------------------------------------------------------------------
+//function to convert each pixel to black or white based on the average
 void Black_White_Image() {
 
     int average, sum = 0, total = 256 * 256;
@@ -71,7 +87,7 @@ void Invert_Image() {
         }
     }
 }
-//-----------------------------------------------------------------------------------------
+////a function will create a new image, with every pixel equal the average gray level of the corresponding pixels in the images to merge.
 void Merge_Image(){
     loadImage2();
     for (int i = 0; i < SIZE; i++) {
@@ -83,12 +99,13 @@ void Merge_Image(){
     }
 }
 //----------------------------------------------------------------------------------------
+//function to flip the photo horizontally or vertically
 void Flip_Image() {
     int flip = SIZE - 1;
-    string fpdir;
-    cout << "please enter horizontal or vertical: ";
+    char fpdir;
+    cout << "please enter (h)orizontal or (v)ertical: ";
     cin >> fpdir;
-    if (fpdir == "horizontal") {
+    if (fpdir == 'h') {
         for (int i = SIZE - 1; i >= 0; i--) {
             for (int j = 0; j < SIZE; j++) {
                 step[flip - i][j] = image[i][j];
@@ -118,72 +135,48 @@ void Flip_Image() {
 //function to rotate the chosen photo
 void Rotate_Image() {
     unsigned char temp[SIZE][SIZE];
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            temp[i][j] = image[i][j];
-        }
-    }
     int degree;
     cout << "Please enter the rotation degree: " << endl;
     cin >> degree;
     if (degree == 90) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
+                temp[j][SIZE-1-i] = image[i][j];
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = temp[i][j];
             }
         }
     } else if (degree == 180) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
+                temp[SIZE-1-i][SIZE-1-j] = image[i][j] ;
             }
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                temp[i][j] = image[i][j];
+                image[i][j] = temp[i][j];
             }
         }
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
-            }
-        }
+
     } else if (degree == 270) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
+                temp[SIZE - 1 - j][i] = image[i][j] ;
             }
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                temp[i][j] = image[i][j];
+                image[i][j] = temp[i][j];
             }
         }
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
-            }
-        }
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                temp[i][j] = image[i][j];
-            }
-        }
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                image[i][j] = temp[SIZE - 1 - j][i];
-            }
-        }
-    }
 
-
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            image[i][j] = temp[SIZE - 1 - j][i];
-        }
     }
 }
-//--------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+//function allows the user to make the image darker or lighter by 50%
 void Darken_and_Lighten_Image(){
     int x;
     cout<<"enter 1 if you want image to be darker or 2 to make image lighter "<<endl;
@@ -203,6 +196,7 @@ void Darken_and_Lighten_Image(){
     }
 }
 //--------------------------------------------------------------------------------------
+//function to detect the edges as pencil outline
 void Detect_Image_Edges() {
     unsigned char copy[SIZE][SIZE];
     Black_White_Image();
@@ -225,6 +219,7 @@ void Detect_Image_Edges() {
         }
     }
 }
+
 //--------------------------------------------------------------------------------------------
 //function to divide the photo into 4 quarters and chose one to zoom in to the original size
 void Enlarge_Image() {
@@ -263,7 +258,7 @@ void Enlarge_Image() {
         }
     }
 }
-//---------------------------------------------------------------------------------------
+//this function allows the user to shrink the image dimensions to 1/2, 1/3 or 1/4 the original dimensions.
 void Shrink_Image(){
     for (int i = 0; i <SIZE; i++) {
         for (int j = 0; j<SIZE; j++) {
@@ -464,7 +459,7 @@ void Shuffle_Image(){
         count++;
     }
 }
-//-------------------------------------------------------------------------------------------------------------
+//this filter produces a bury version of the image.
 void Blur_Image(){
     for (int i = 1; i <SIZE-1; i++) {
         for (int j = 1; j<SIZE-1; j++) {
@@ -493,12 +488,41 @@ void Skew_Horizontal(){
 
 }
 //--------------------------------------------------------------------------------------------
+void Up_Skew(){
+    double rad ;
+    cout<< "Enter the degree : \n";
+    cin >> rad ;
+    rad = ( rad * 22 ) / ( 180 * 7 ) ;//here we convert to rad by multiplying *22/7*180 as tan don't take degrees
+    double mov = tan(rad) * 256 ;
+    int move =int(mov);
+    double step = mov / SIZE ; // عدد الخطوات
+    unsigned char img_in[SIZE][SIZE+(int)mov]  ;
+    for ( int i = 0 ; i < SIZE ; i++ )
+        for ( int j = 0 ; j < SIZE+move ; j++ )
+            img_in[i][j] = 255 ;
+    //make the whole photo white
+    for ( int i = 0 ; i < SIZE ; i++ )
+        for ( int j = 0 ; j < SIZE ; j++ )
+            img_in[i][j] = 255 ;
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ ){
+            img_in[i][j+(int)mov] = image[i][j] ;
+        }
+        mov -= step ;
+    }
+    int ss= (move+256)/256;
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE+move; j++ ){
+            image[i][j/ss] = img_in[i][j] ;
+        }
+    }
+}
 //the user should be able to choose the filter from a list of filters
 int main() {
-    loadImage();
     while(true){
         cout << "Please choose a filter from the list below: " << endl;
-        cout <<"1- Black & White Filter\n"
+        cout <<"l-load image\n"
+             <<"1- Black & White Filter\n"
              <<"2- Invert Filter\n"
              <<"3- Merge Filter \n"
              <<"4- Flip Image\n"
@@ -514,7 +538,7 @@ int main() {
              <<"e- Skew Image Right \n"
              <<"f- Skew Image Up\n"
              <<"s- Save the image to a file\n"
-             <<"0- Exit";
+             <<"0- Exit\n";
         char choice;cin>>choice;
         if (choice=='0')break;
         else if (choice=='1')Black_White_Image();
@@ -530,9 +554,17 @@ int main() {
         else if (choice=='b')Shuffle_Image();
         else if (choice=='c')Blur_Image();
         else if (choice=='d');
-        else if (choice=='e');
-        else if (choice=='f')Skew_Horizontal();
+//        else if (choice=='e')Right_Skew();
+        else if (choice=='f')Up_Skew();
         else if (choice=='s')saveImage();
+        else if (choice=='l')loadImage();
     }
     return 0;
 }
+
+
+
+
+
+
+
