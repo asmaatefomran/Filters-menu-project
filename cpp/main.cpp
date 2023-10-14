@@ -469,24 +469,7 @@ void Blur_Image(){
     }
 
 }
-//------------------------------------------------------------------------------------------------------------
-void Skew_Horizontal(){
-    // Define skew factor (adjust as needed)
-    float skewFactorX = 0.2; // Adjust for the desired skew effect
 
-    unsigned char image2[SIZE*2][SIZE*2];
-
-// Perform horizontal skewing up
-    for (int y = 0; y < 256; ++y) {
-        for (int x = 0; x < 256; ++x) {
-            int newX = x + skewFactorX * y; // Calculate new X position
-            if (newX >= 0 && newX < 512) {
-                image2[y][newX] = image[y][x]; // Interpolate pixel values
-            }
-        }
-    }
-
-}
 //--------------------------------------------------------------------------------------------
 void Up_Skew(){
     double rad ;
