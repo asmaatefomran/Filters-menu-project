@@ -504,6 +504,21 @@ void Blur_Image(){
     }
 
 }
+//---------------------------------------------------------------------------------------------
+void Crop() {
+    cout<<"please enter the point X and Y: ";
+    int x,y,w,l;
+    cin>>x>>y;
+    cout<<"please enter the length and the width: ";
+    cin>>l>>w;
+    for(int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            if(i>x && j>y && i<x+l && j<y+w)continue;
+            else image[i][j]=255;
+        }
+    }
+
+}
 
 //--------------------------------------------------------------------------------------------
 void Up_Skew(){
@@ -709,7 +724,7 @@ int main() {
         else if (choice=='a')Mirror_Image();
         else if (choice=='b')Shuffle_Image();
         else if (choice=='c')Blur_Image();
-        else if (choice=='d');
+        else if (choice=='d')Crop();
 //        else if (choice=='e')Right_Skew();
         else if (choice=='f')Up_Skew();
         else if (choice=='s')saveImage();
