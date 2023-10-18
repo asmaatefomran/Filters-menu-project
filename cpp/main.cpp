@@ -21,7 +21,42 @@ using FunctionPtr = function<void()>;
 unsigned char image[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
 unsigned char step[SIZE][SIZE];
+unsigned char Cimage[SIZE][SIZE][RGB];
+unsigned char Cimage2[SIZE][SIZE][RGB];
 
+void cloadImage () {
+    char cimageFileName[100];
+
+    // Get gray scale image file name
+    cout << "Enter the source image file name: ";
+    cin >> cimageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat (cimageFileName, ".bmp");
+    readRGBBMP(cimageFileName, Cimage);
+}
+void cloadImage2 () {
+    char cimageFileName[100];
+
+    // Get gray scale image file name
+    cout << "Enter the source image file name: ";
+    cin >> cimageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat (cimageFileName, ".bmp");
+    readRGBBMP(cimageFileName, Cimage2);
+}
+void csaveImage () {
+    char CimageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> CimageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat (CimageFileName, ".bmp");
+    writeRGBBMP(CimageFileName, Cimage);
+}
 void loadImage() {
     char imageFileName[100];
 
@@ -498,6 +533,144 @@ void Up_Skew(){
         for ( int j = 0 ; j < SIZE+move; j++ ){
             image[i][j/ss] = img_in[i][j] ;
         }
+    }
+}
+
+void cshrink_image(){
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++){
+            for(int x=0;x<RGB;x++){
+                Cimage2[i][j][x]=255;
+            }}}
+    int z;
+    cout<<"if you want to  shrink to 1/2 enter 1 and for shrinking to 1/3 enter 2 and for shrinking to1/4 enter 3"<<endl;
+    cin>>z;
+    if(z==1)
+    {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j< SIZE; j++){
+                for(int x=0;x<RGB;x++){
+                    Cimage2[i/2][j/2][x]=Cimage[i][j][x];
+                }
+
+
+            }
+
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j< SIZE; j++){
+                for(int x=0;x<RGB;x++){
+                    Cimage[i][j][x]=Cimage2[i][j][x];
+                }
+
+
+            }
+
+        }
+
+    }
+    else if(z==2)
+    {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j< SIZE; j++){
+                for(int x=0;x<RGB;x++){
+                    Cimage2[i/3][j/3][x]=Cimage[i][j][x];
+                }
+
+
+            }
+
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j< SIZE; j++){
+                for(int x=0;x<RGB;x++){
+                    Cimage[i][j][x]=Cimage2[i][j][x];
+                }
+
+
+            }
+
+        }
+
+
+    }
+    else if(z==3)
+    {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j< SIZE; j++){
+                for(int x=0;x<RGB;x++){
+                    Cimage2[i/4][j/4][x]=Cimage[i][j][x];
+                }
+
+
+            }
+
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j< SIZE; j++){
+                for(int x=0;x<RGB;x++){
+                    Cimage[i][j][x]=Cimage2[i][j][x];
+                }
+
+
+            }
+
+        }
+
+
+
+    }
+}
+void cBlur_Image(){
+    for (int i = 1; i <SIZE-1; i++) {
+        for (int j = 1; j<SIZE-1; j++) {
+            for(int x=0;x<RGB;x++){
+                Cimage[i][j][x]=(Cimage[i][j+1][x]+Cimage[i][j-1][x]+Cimage[i-1][j][x]+Cimage[i+1][j][x]+Cimage[i-1][j+1][x]+Cimage[i-1][j-1][x]+Cimage[i+1][j-1][x]+Cimage[i+1][j+1][x])/8;
+
+
+            }
+
+        }
+    }
+
+}
+void cdarkandlight_image() {
+    int z;
+    cout << "enter 1 if you want image to be darker or 2 to make image lighter " << endl;
+    cin >> z;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++){
+            for(int x=0;x<RGB;x++){
+                if(z==1)
+                {
+                    Cimage[i][j][x]-=Cimage[i][j][x]/2;
+                }
+                else if (z == 2) {
+                    Cimage[i][j][x] += (256 - Cimage[i][j][x]) / 2;
+
+
+                }
+            }
+
+
+        }
+
+    }
+
+
+
+}
+void merge_image_color(){
+    cloadImage2 ();
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++){
+            for(int x=0;x<RGB;x++){
+                Cimage[i][j][x]=(Cimage[i][j][x]+Cimage2[i][j][x])/2;
+            }
+
+
+        }
+
     }
 }
 //the user should be able to choose the filter from a list of filters
