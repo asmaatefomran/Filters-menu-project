@@ -703,7 +703,7 @@ int main() {
         else if (choice=='b')cShuffle_Image();
         else if (choice=='c')cBlur_Image();
         else if (choice=='d')cCrop();
-        else if (choice=='e')cUp_Skew;
+        else if (choice=='e')cUp_Skew();
         else if (choice=='f')cSkew_Horizontal();
         else if (choice=='s')saveImage();
     }
