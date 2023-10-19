@@ -666,10 +666,11 @@ void cUp_Skew(){
 //--------------------------------------------------------------------------------------------
 //the user should be able to choose the filter from a list of filters
 int main() {
-    loadImage();
+
     while(true){
         cout << "Please choose a filter from the list below: " << endl;
-        cout <<"1- Black & White Filter\n"
+        cout <<"l- load image\n"
+             <<"1- Black & White Filter\n"
              <<"2- Invert Filter\n"
              <<"3- Merge Filter \n"
              <<"4- Flip Image\n"
@@ -682,12 +683,13 @@ int main() {
              <<"b- Shuffle Image\n"
              <<"c- Blur Image\n"
              <<"d- Crop Image\n"
-             <<"e- Skew Image Right \n"
-             <<"f- Skew Image Up\n"
+             <<"e- Skew Image Up\n"
+             <<"f- Skew Image Right \n"
              <<"s- Save the image to a file\n"
              <<"0- Exit";
         char choice;cin>>choice;
         if (choice=='0')break;
+        else if (choise=='l')loadImage();
         else if (choice=='1')cBlack_White_Image();
         else if (choice=='2')cInvert_Image();
         else if (choice=='3')cMerge_Image();
@@ -698,11 +700,11 @@ int main() {
         else if (choice=='8')cEnlarge_Image();
         else if (choice=='9')cShrink_Image();
         else if (choice=='a')cMirror_Image();
-            //else if (choice=='b')cShuffle_Image();
+        else if (choice=='b')cShuffle_Image();
         else if (choice=='c')cBlur_Image();
         else if (choice=='d')cCrop();
-            //else if (choice=='e');
-            //else if (choice=='f')cSkew_Horizontal();
+        else if (choice=='e')cUp_Skew;
+        else if (choice=='f')cSkew_Horizontal();
         else if (choice=='s')saveImage();
     }
     return 0;

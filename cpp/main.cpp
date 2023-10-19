@@ -569,7 +569,7 @@ int main() {
     loadImage();
     while(true){
         cout << "Please choose a filter from the list below: " << endl;
-        cout <<"l-load image\n"
+        cout <<"l- load image\n"
              <<"1- Black & White Filter\n"
              <<"2- Invert Filter\n"
              <<"3- Merge Filter \n"
