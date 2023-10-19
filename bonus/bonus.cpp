@@ -531,6 +531,68 @@ void Skew_Horizontal(){
     }
 
 }*/
+void chorizontal_skew(){
+    double rad ;
+    cout<< "Enter the degree : \n";
+    cin >> rad ;
+    rad=90-rad;
+    rad = ( rad * 22 ) / ( 180 * 7 ) ;
+    double y=256/(1+(1/tan(rad)));
+    double step=SIZE-y;
+    double move=step/SIZE;
+    unsigned char Cimage_skewed[SIZE][SIZE+int(step)][RGB];
+    unsigned char Cimage_shrink[SIZE][SIZE][RGB];
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ )
+        {
+            for(int x=0;x<RGB;x++)
+            {
+                Cimage_shrink[i][j][x]=255;
+                Cimage_skewed[i][j][x] =255;
+            }
+
+        }
+    }
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ )
+        {
+            for(int x=0;x<RGB;x++)
+            {
+                Cimage_shrink[i][(j*int(y))/SIZE][x]=Cimage[i][j][x];
+            }
+
+
+        }
+    }
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ )
+        {
+            for(int x=0;x<RGB;x++)
+            {
+                Cimage_skewed[i][j+int(step)][x]=Cimage_shrink[i][j][x];
+            }
+
+
+        }
+        step-=move;
+    }
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ )
+        {
+            for(int x=0;x<RGB;x++)
+            {
+                Cimage[i][j][x]=Cimage_skewed[i][j][x];
+            }
+
+
+        }
+
+    }
+
+
+
+}
+
 //--------------------------------------------------------------------------------------------
 //the user should be able to choose the filter from a list of filters
 int main() {
