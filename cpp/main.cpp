@@ -583,8 +583,8 @@ int main() {
              <<"b- Shuffle Image\n"
              <<"c- Blur Image\n"
              <<"d- Crop Image\n"
-             <<"e- Skew Image Right \n"
-             <<"f- Skew Image Up\n"
+             <<"e- Skew Image Up\n"
+             <<"f- Skew Image Right \n"
              <<"s- Save the image to a file\n"
              <<"0- Exit\n";
         char choice;cin>>choice;
@@ -603,8 +603,8 @@ int main() {
         else if (choice=='b')Shuffle_Image();
         else if (choice=='c')Blur_Image();
         else if (choice=='d')Crop();
-        else if (choice=='e')Right_Skew();
-        else if (choice=='f')Up_Skew();
+        else if (choice=='e')Up_Skew();
+        else if (choice=='f')Right_Skew();
         else if (choice=='s')saveImage();
     }
     return 0;
