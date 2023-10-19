@@ -501,10 +501,6 @@ void Up_Skew(){
     for ( int i = 0 ; i < SIZE ; i++ )
         for ( int j = 0 ; j < SIZE+move ; j++ )
             img_in[i][j] = 255 ;
-    //make the whole photo white
-    for ( int i = 0 ; i < SIZE ; i++ )
-        for ( int j = 0 ; j < SIZE ; j++ )
-            img_in[i][j] = 255 ;
     for ( int i = 0 ; i < SIZE ; i++ ){
         for ( int j = 0 ; j < SIZE ; j++ ){
             img_in[i][j+(int)mov] = image[i][j] ;
