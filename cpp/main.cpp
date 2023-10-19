@@ -566,7 +566,7 @@ void horizontal_skew(){
 
 //the user should be able to choose the filter from a list of filters
 int main() {
-    loadImage();
+
     while(true){
         cout << "Please choose a filter from the list below: " << endl;
         cout <<"l- load image\n"
@@ -589,6 +589,7 @@ int main() {
              <<"0- Exit\n";
         char choice;cin>>choice;
         if (choice=='0')break;
+        else if (choise=='l')loadImage();
         else if (choice=='1')Black_White_Image();
         else if (choice=='2')Invert_Image();
         else if (choice=='3')Merge_Image();
