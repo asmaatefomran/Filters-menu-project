@@ -690,6 +690,7 @@ void merge_image_color(){
 }
 //the user should be able to choose the filter from a list of filters
 int main() {
+    loadImage();
     while(true){
         cout << "Please choose a filter from the list below: " << endl;
         cout <<"l-load image\n"
@@ -728,7 +729,6 @@ int main() {
 //        else if (choice=='e')Right_Skew();
         else if (choice=='f')Up_Skew();
         else if (choice=='s')saveImage();
-        else if (choice=='l')loadImage();
     }
     return 0;
 }
