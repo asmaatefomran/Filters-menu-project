@@ -545,10 +545,10 @@ void chorizontal_skew(){
     for ( int i = 0 ; i < SIZE ; i++ ){
         for ( int j = 0 ; j < SIZE ; j++ )
         {
-            for(int x=0;x<RGB;x++)
+            for(int k=0;k<RGB;k++)
             {
-                Cimage_shrink[i][j][x]=255;
-                Cimage_skewed[i][j][x] =255;
+                Cimage_shrink[i][j][k]=255;
+                Cimage_skewed[i][j][k] =255;
             }
 
         }
@@ -556,9 +556,9 @@ void chorizontal_skew(){
     for ( int i = 0 ; i < SIZE ; i++ ){
         for ( int j = 0 ; j < SIZE ; j++ )
         {
-            for(int x=0;x<RGB;x++)
+            for(int k=0;k<RGB;k++)
             {
-                Cimage_shrink[i][(j*int(y))/SIZE][x]=Cimage[i][j][x];
+                Cimage_shrink[i][(j*int(y))/SIZE][k]=image[i][j][k];
             }
 
 
@@ -567,9 +567,9 @@ void chorizontal_skew(){
     for ( int i = 0 ; i < SIZE ; i++ ){
         for ( int j = 0 ; j < SIZE ; j++ )
         {
-            for(int x=0;x<RGB;x++)
+            for(int k=0;k<RGB;k++)
             {
-                Cimage_skewed[i][j+int(step)][x]=Cimage_shrink[i][j][x];
+                Cimage_skewed[i][j+int(step)][k]=Cimage_shrink[i][j][k];
             }
 
 
@@ -579,9 +579,9 @@ void chorizontal_skew(){
     for ( int i = 0 ; i < SIZE ; i++ ){
         for ( int j = 0 ; j < SIZE ; j++ )
         {
-            for(int x=0;x<RGB;x++)
+            for(int k=0;k<RGB;k++)
             {
-                Cimage[i][j][x]=Cimage_skewed[i][j][x];
+                image[i][j][k]=Cimage_skewed[i][j][k];
             }
 
 
