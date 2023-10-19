@@ -512,25 +512,50 @@ void cCrop() {
         }
     }
 
-}/*
-  //-----------------------------------------------------------------------------------------------------
-void Skew_Horizontal(){
-    // Define skew factor (adjust as needed)
-    float skewFactorX = 0.2; // Adjust for the desired skew effect
-
-    unsigned char image2[SIZE*2][SIZE*2];
-
-// Perform horizontal skewing up
-    for (int y = 0; y < 256; ++y) {
-        for (int x = 0; x < 256; ++x) {
-            int newX = x + skewFactorX * y; // Calculate new X position
-            if (newX >= 0 && newX < 512) {
-                image2[y][newX] = image[y][x]; // Interpolate pixel values
+}
+//----------------------------------------------------------------------------------------------------------------
+void cUp_Skew(){
+    double rad ;
+    cout<< "Enter the degree : \n";
+    cin >> rad ;
+    if (rad<45){
+        rad=90.0-rad;
+    }
+    rad = ( (rad) * 22 ) / ( 180 * 7 ) ;//here we convert to rad by multiplying *22/7*180 as tan don't take degrees
+    double mov = tan(rad) * 256 ;
+    int move =int(mov);
+    double step = mov / SIZE ; // عدد الخطوات
+    unsigned char img_in[SIZE][SIZE+(int)mov][RGB];
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE+move ; j++ ){
+            for (int k = 0 ; k< RGB ; k ++){
+                img_in[i][j][k] = 255 ;
             }
         }
     }
 
-}*/
+    //make the whole photo white
+//    for ( int i = 0 ; i < SIZE ; i++ )
+//        for ( int j = 0 ; j < SIZE ; j++ )
+//            img_in[i][j] = 255 ;
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ ){
+            for (int k = 0 ; k < RGB ; k ++){
+                img_in[i][j+(int)mov][k] = image[i][j][k] ;
+            }
+        }
+        mov -= step ;
+    }
+    int ss= (move+256)/256;
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE+move; j++ ){
+            for (int k =0;k < RGB ; k++){
+                image[i][j/ss][k] = img_in[i][j][k] ;
+            }
+        }
+    }
+}
+//-------------------------------------------------------------------------------------------------------------------
 void chorizontal_skew(){
     double rad ;
     cout<< "Enter the degree : \n";
