@@ -617,6 +617,51 @@ void chorizontal_skew(){
 
 
 }
+void cUp_Skew(){
+    double rad ;
+    cout<< "Enter the degree : \n";
+    cin >> rad ;
+    if (rad<45){
+        rad=90.0-rad;
+    }
+    rad = ( (rad) * 22 ) / ( 180 * 7 ) ;//here we convert to rad by multiplying *22/7*180 as tan don't take degrees
+    double mov = tan(rad) * 256 ;
+    int move =int(mov);
+    double step = mov / SIZE ; // عدد الخطوات
+    unsigned char Cimg_in[SIZE][SIZE+(int)mov][RGB]  ;
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE+move ; j++ ){
+            for(int k=0;k<RGB;k++){
+                Cimg_in[i][j][k] = 255 ;
+            }
+        }
+    }
+
+
+
+
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ ){
+            for(int k=0;k<RGB;k++)
+            {
+                Cimg_in[i][j+(int)mov][k] = image[i][j][k] ;
+            }
+
+        }
+        mov -= step ;
+    }
+    int ss= (move+256)/256;
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE+move; j++ ){
+            for(int k=0;k<RGB;k++)
+            {
+                image[i][j/ss][k] = Cimg_in[i][j][k] ;
+            }
+
+        }
+    }
+}
+
 
 //--------------------------------------------------------------------------------------------
 //the user should be able to choose the filter from a list of filters
