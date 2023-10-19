@@ -490,7 +490,10 @@ void Up_Skew(){
     double rad ;
     cout<< "Enter the degree : \n";
     cin >> rad ;
-    rad = ( rad * 22 ) / ( 180 * 7 ) ;//here we convert to rad by multiplying *22/7*180 as tan don't take degrees
+    if (rad<45){
+        rad=90.0-rad;
+    }
+    rad = ( (rad) * 22 ) / ( 180 * 7 ) ;//here we convert to rad by multiplying *22/7*180 as tan don't take degrees
     double mov = tan(rad) * 256 ;
     int move =int(mov);
     double step = mov / SIZE ; // عدد الخطوات
