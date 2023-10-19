@@ -515,6 +515,51 @@ void Up_Skew(){
         }
     }
 }
+void horizontal_skew(){
+    double rad ;
+    cout<< "Enter the degree : \n";
+    cin >> rad ;
+    rad=90-rad;
+    rad = ( rad * 22 ) / ( 180 * 7 ) ;
+    double y=256/(1+(1/tan(rad)));
+    double step=SIZE-y;
+    double move=step/SIZE;
+    unsigned char image_skewed[SIZE][SIZE+int(step)];
+    unsigned char image_shrink[SIZE][SIZE];
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ )
+        {
+            image_shrink[i][j]=255;
+            image_skewed[i][j] =255;
+        }
+    }
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ )
+        {
+            image_shrink[i][(j*int(y))/SIZE]=image[i][j];
+
+        }
+    }
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ )
+        {
+            image_skewed[i][j+int(step)]=image_shrink[i][j];
+
+        }
+        step-=move;
+    }
+    for ( int i = 0 ; i < SIZE ; i++ ){
+        for ( int j = 0 ; j < SIZE ; j++ )
+        {
+            image[i][j]=image_skewed[i][j];
+
+        }
+    }
+
+
+
+}
+
 
 
 
